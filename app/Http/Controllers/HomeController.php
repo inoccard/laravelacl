@@ -24,7 +24,11 @@ class HomeController extends Controller
      */
     public function index(Post $post)
     {
-        $posts = $post->all();
+        // filtra os posts dos usuarios logados
+        $posts = $post->where('user_id',auth()->user()->id)->get();
         return view('home',compact('posts'));
+    }
+    public function update($idPost){
+        return 'update';
     }
 }
