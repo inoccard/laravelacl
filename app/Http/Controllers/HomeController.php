@@ -32,9 +32,9 @@ class HomeController extends Controller
     }
     public function update($idPost){
         $post = Post::find($idPost);
-//        $this->authorize('update-post', $post);
-        if(Gate::denies('update-post',$post))
-            abort(401);
+        $this->authorize('update-post', $post);
+        //if(Gate::denies('update-post',$post))
+        //    abort(401,'Acesso negado!');
         return view('post-update', compact('post'));
     }
 }
