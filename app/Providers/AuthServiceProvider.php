@@ -17,7 +17,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        \App\Post::class => \App\Policies\PoliticaPost::class,
+    //    \App\Post::class => \App\Policies\PoliticaPost::class,
     ];
     /**
      * Register any authentication / authorization services.
@@ -28,16 +28,26 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies($gate);
 
-        /*$gate->define('update-post',function(User $user, Post $post){
+        // função de callback
+/*        $gate->define('update-post',function(User $user, Post $post){
             return $user->id == $post->user_id;
-        }); */
-
-        // Recupera todas as permissões e objetos de todas as funções
+        });
+*/
+        // Recupera todas as permissões e objetos de todas as
+        // chama o método roles da classe Permission
         $permissions = Permission::with('roles')->get();
-        foreach ($permissions as $permission) :
+
+        foreach ($permissions as $permission):
             $gate->define($permission->nome,function(User $user) use ($permission){
                 return $user->hasPermission($permission);
             });
         endforeach;
+
+        // verifica se usuário tem função de admin para editar sistema
+        $gate->before(function(USer $user,  $ability){
+            if($user->hasAnyRoles('admin')):
+                return true;
+            endif;
+        });
     }
 }
