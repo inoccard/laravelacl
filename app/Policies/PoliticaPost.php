@@ -20,7 +20,7 @@ class PoliticaPost
         //
     }
 
-    public function updatePost(User $user, Post $post){
+    public function view_post(User $user, Post $post){
             return $user->id == $post->user_id;
     }
 }
