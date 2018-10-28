@@ -36,19 +36,19 @@ class User extends Authenticatable
     }
 
     // Recupera as funções dos usuários
-    public function hashPermission(Permission $permission)
+    public function hasPermission(Permission $permission)
     {
         return $this->hasAnyRoles($permission->roles);
     }
 
     public function hasAnyRoles($roles)
     {
+        // verifica se é objeto ou matriz
         if(is_array($roles) || is_object($roles)):
-            foreach($roles as $role):
-                $this->hasAnyRoles($role);
-            endforeach;
+            // verifica se o usuário está vinculado ao uma determinada função
+            return !! $roles->intersect($this->roles)->count();
         else:
-            return $this->roles->contains('nome',$role);
+            return $this->roles->contains('nome',$roles);
         endif;
     }
 }
