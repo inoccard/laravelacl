@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
-use Gate;
+//use Gate;
 
 class HomeController extends Controller
 {
@@ -26,15 +26,30 @@ class HomeController extends Controller
     public function index(Post $post)
     {
         // filtra os posts dos usuarios logados
-        //$posts = $post->all();
-        $posts = $post->where('user_id', auth()->user()->id)->get();
+        $posts = $post->all();
+        //$posts = $post->where('user_id', auth()->user()->id)->get();
         return view('home', compact('posts'));
     }
     public function update($idPost){
         $post = Post::find($idPost);
-        $this->authorize('update-post', $post);
+        $this->authorize('edit_post', $post);
         //if(Gate::denies('update-post',$post))
         //    abort(401,'Acesso negado!');
         return view('post-update', compact('post'));
+    }
+
+    public function rolesPermissions()
+    {
+        $nomeUser = auth()->user()->name;
+        echo("<h1>{$nomeUser}</h1>");
+
+        foreach(auth()->user()->roles as $role):
+            echo "<b>$role->nome</b> -> ";
+            $permissions = $role->permissions;
+            foreach ($permissions as $permission):
+                echo " $permission->nome";
+            endforeach;
+            echo '<hr>';
+        endforeach;
     }
 }
