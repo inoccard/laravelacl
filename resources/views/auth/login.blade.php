@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('auth.template.template')
 
-@section('content')
+@section('content-form')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -45,7 +45,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                                        {{ __('Lembra-me') }}
                                     </label>
                                 </div>
                             </div>
@@ -54,11 +54,11 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                                    {{ __('Entrar') }}
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
+                                <a class="btn btn-link" href="recuperar.php">
+                                    {{ __('Esqueceu sua senha?') }}
                                 </a>
                             </div>
                         </div>
