@@ -21,18 +21,13 @@ class AuthServiceProvider extends ServiceProvider
     ];
     /**
      * Register any authentication / authorization services.
-     *
+     * 
      * @return void
      */
     public function boot( GateContract $gate)
     {
         $this->registerPolicies($gate);
 
-        // função de callback
-/*        $gate->define('update-post',function(User $user, Post $post){
-            return $user->id == $post->user_id;
-        });
-*/
         // Recupera todas as permissões e objetos de todas as
         // chama o método roles da classe Permission
         $permissions = Permission::with('roles')->get();
