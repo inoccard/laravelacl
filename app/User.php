@@ -45,7 +45,7 @@ class User extends Authenticatable
     {
         // verifica se é objeto ou matriz
         if(is_array($roles) || is_object($roles)):
-            // verifica se o usuário está vinculado ao uma determinada função
+            // verifica se o usuário está vinculado a uma determinada função
             return !! $roles->intersect($this->roles)->count();
         else:
             return $this->roles->contains('nome',$roles);
