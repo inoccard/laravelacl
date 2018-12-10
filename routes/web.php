@@ -19,4 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/post/{id}/update','HomeController@update');
+
+// para debugar permissões do usuário
 Route::get('/roles-permissions','HomeController@rolesPermissions');
