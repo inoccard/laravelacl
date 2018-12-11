@@ -13,3 +13,7 @@ yarn-error.log
 .env
 .phpunit.result.cache
 resources/views/auth/template/template.blade.php
+app/Http/Controllers/HomeController.php
+resources/views/home.blade.php
+resources/views/welcome.blade.php
+resources/views/post-update.blade.php
