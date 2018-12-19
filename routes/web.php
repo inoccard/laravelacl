@@ -9,7 +9,7 @@ Route::group(['prefix'=> 'painel'], function(){
     
     //RoleController
     Route::get('roles','Painel\RoleController@index');
-    Route::get('role/{id}/permissions','Painel\RoleController@permissions');
+    Route::get('roles/{id}/permissions','Painel\RoleController@permissions');
 
     //PainelController
     Route::get('/','Painel\PainelController@index');
