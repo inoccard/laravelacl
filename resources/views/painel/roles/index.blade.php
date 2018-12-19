@@ -34,13 +34,13 @@
 				<td>{{$role->nome}}</td>
 				<td>{{$role->label}}</td>
 				<td>
-					<a href='{{url("/painel/roles/$role->id/permissions")}}' class="edit">
+					<a href="{{url("/painel/roles/$role->id/permissions")}}" class="edit">
 						<i class="fa fa-pencil-square-o"></i>
 					</a>
-					<a href='{{url("/painel/roles/$role->id/edit")}}' class="edit">
+					<a href="{{url("/painel/roles/$role->id/edit")}}" class="edit">
 						<i class="fa fa-pencil-square-o"></i>
 					</a>
-					<a href='{{url("/painel/roles/$role->id/delete")}}' class="delete">
+					<a href="{{url("/painel/roles/$role->id/delete")}}"" class="delete">
 						<i class="fa fa-trash"></i>
 					</a>
 				</td>
