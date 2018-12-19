@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<!--Filters and actions
+	<!--Filters and actions -->
 	<div class="actions">
 			<div class="container">
 				<a class="add" href="forms">
@@ -14,7 +14,7 @@
 					<input type="submit" name="pesquisar" value="Encontrar" class="btn btn-success">
 				</form>
 			</div>
-		</div> Actions-->
+		</div> <!--Actions-->
 
 		<div class="clear"></div>
 
@@ -32,7 +32,7 @@
 				<td>{{$permission->nome}}</td>
 				<td>{{$permission->label}}</td>
 				<td>
-					<a href="{{url('/painel/permission/$permission->id/delete')}}" class="delete">
+					<a href="{{url("/painel/permission/$permission->id/delete")}}" class="delete">
 						<i class="fa fa-trash"></i>
 					</a>
 				</td>
