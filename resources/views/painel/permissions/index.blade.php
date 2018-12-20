@@ -25,13 +25,16 @@
 		<tr>
 			<th>Nome</th>
 			<th>Label</th>
-			<th width="100px">Ações</th>
+			<th width="150px">Ações</th>
 		</tr>
 		@forelse($permissions as $permission)
 			<tr>
 				<td>{{$permission->nome}}</td>
 				<td>{{$permission->label}}</td>
 				<td>
+				<a href="{{url("/painel/permission/$permission->id/roles")}}" class="permission">
+						<i class="fa fa-unlock"></i>
+					</a>
 					<a href="{{url("/painel/permission/$permission->id/edit")}}" class="edit">
 						<i class="fa fa-pencil-square-o"></i>
 					</a>
