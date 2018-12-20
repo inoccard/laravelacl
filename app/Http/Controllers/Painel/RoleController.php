@@ -28,7 +28,7 @@ class RoleController extends Controller
         $role = $this->role->find($id);
 
         // REcuperar permissões
-        $permissions = $role->permissions(  );
+        $permissions = $role->permissions()->get();
         return view('painel.roles.permissions', compact('role','permissions'));
     }
 }
