@@ -9,11 +9,13 @@ use App\User;
 use App\Role;
 use App\Permission;
 use App\Post;
+use Gate;
 
 class PainelController extends Controller
 {
     public function index()
-    {   
+    {
+
         $totalUsers = User::count();
         $totalRoles = Role::count();
         $totalPermissions = Permission::count();
