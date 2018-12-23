@@ -23,40 +23,100 @@
 	<div class="menu">
 		<ul class="menu col-md-12">
 			<li class="col-md-2 text-center">
-				<a href="/painel">
+				<a href="/">
                     <img src="{{url("assets/painel/imgs/acl-branca.png")}}" alt="acl" class="logo-login">
 		        </a>
 			</li>
+			@can('user')
 			<li class="col-md-2 text-center">
 				<a href="/painel/users">
-					<img src="{{url('assets/painel/imgs/perfil-acl.png')}}" alt="Meu Perfil" class="img-menu">
+					<!--<img src="{{url('assets/painel/imgs/perfil-acl.png')}}" alt="Meu Perfil" class="img-menu">-->
 					<h1>Usuários</h1>
 				</a>
 			</li>
+			@else
+			<li class="col-md-2 text-center">
+				<!--<img src="{{url('assets/painel/imgs/perfil-acl.png')}}" alt="Meu Perfil" class="img-menu">-->
+				<h1>Usuários</h1>
+			</li>
+			@endcan
+
+			@can('view_post')
 			<li class="col-md-2 text-center">
 				<a href="/painel/posts">
-					<img src="{{url('assets/painel/imgs/noticias-acl.png')}}" alt="Estilos" class="img-menu">
-					<h1>Notícias</h1>
+					<!--<img src="{{url('assets/painel/imgs/noticias-acl.png')}}" alt="Estilos" class="img-menu">-->
+					<h1>Posts</h1>
 				</a>
 			</li>
+			@else
+			<li class="col-md-2 text-center">
+				<!--<img src="{{url('assets/painel/imgs/noticias-acl.png')}}" alt="Estilos" class="img-menu">-->
+				<h1>Posts</h1>
+			</li>
+			@endcan
+
+			@can('adm')
 			<li class="col-md-2 text-center">
 				<a href="/painel/roles">
-					<img src="{{url('assets/painel/imgs/funcao-acl.png')}}" alt="Albuns" class="img-menu">
+					<!--<img src="{{url('assets/painel/imgs/funcao-acl.png')}}" alt="Albuns" class="img-menu">-->
 					<h1>Funções</h1>
 				</a>
 			</li>
+			@else
+			<li class="col-md-2 text-center">
+				<!--<img src="{{url('assets/painel/imgs/funcao-acl.png')}}" alt="Albuns" class="img-menu">-->
+				<h1>Funções</h1>
+			</li>
+			@endcan
+
+			@can('adm')
 			<li class="col-md-2 text-center">
 				<a href="/painel/permissions">
-					<img src="{{url('assets/painel/imgs/permissao-acl.png')}}" alt="Musicas" class="img-menu">
+					<!--<img src="{{url('assets/painel/imgs/permissao-acl.png')}}" alt="Musicas" class="img-menu">-->
 					<h1>Permissões</h1>
 				</a>
 			</li>
+			@else
 			<li class="col-md-2 text-center">
-				<a href="/logout">
-					<img src="{{url('assets/painel/imgs/sair-acl.png')}}" alt="Sair" class="img-menu">
-					<h1>Sair</h1>
+				<!--<img src="{{url('assets/painel/imgs/permissao-acl.png')}}" alt="Musicas" class="img-menu">-->
+				<h1>Permissões</h1>
+			</li>
+			@endcan
+
+			<!-- Authentication Links -->
+			@guest
+			<li class="col-md-2 text-center">	
+				<a class="nav-link" href="{{ route('login') }}">
+				<!--<img src="{{url('assets/painel/imgs/sair-acl.png')}}" alt="Sair" class="img-menu">-->
+					<h1>{{ __('Login') }}</h1>
 				</a>
 			</li>
+			<li class="col-md-2 text-center">
+                @if (Route::has('register'))
+                    <a class="nav-link" href="{{ route('register') }}">
+                   	<!--<img src="{{url('assets/painel/imgs/sair-acl.png')}}" alt="Sair" class="img-menu">-->
+                      	<h1>{{ __('Cadastro') }}</h1>
+                    </a>
+                @endif
+            </li>
+                @else
+	         <li class="col-md-2 text-center">
+    	    	<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <h1>{{ Auth::user()->name }}<span class="caret"></span></h1>
+        	    </a>
+
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        <h4>{{ __('Sair') }}</h4>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
+            </li>
+            @endguest
 		</ul>
 	</div><!--Menu-->
 
