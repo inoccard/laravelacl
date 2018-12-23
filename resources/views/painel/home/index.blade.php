@@ -32,5 +32,4 @@
 			</ul>
 		</div>
 	</div><!--Relatorios-->
-
 @endsection
