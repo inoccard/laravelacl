@@ -18,6 +18,7 @@ class SiteController extends Controller
     {
         return view('portal.home.index');
     }
+    
     public function update($idPost){
         $post = Post::find($idPost);
         $this->authorize('edit_post', $post);
