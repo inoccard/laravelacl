@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Role;
+use Gate;
 
 class RoleController extends Controller
 {
@@ -16,9 +17,15 @@ class RoleController extends Controller
         $this->role = $role;
     }
 
+    private function checkarGate()
+    {
+        $this->authorize('adm');
+    }
+    
     public function index()
     {   
         $roles = $this->role->all();
+        $this->checkarGate();
         return view('painel.roles.index', compact('roles'));
     }
 
@@ -26,8 +33,8 @@ class RoleController extends Controller
     {   
         // Recupera role
         $role = $this->role->find($id);
-
-        // REcuperar permissões
+        $this->checkarGate();
+        // Recuperar permissões
         $permissions = $role->permissions()->get();
         return view('painel.roles.permissions', compact('role','permissions'));
     }
